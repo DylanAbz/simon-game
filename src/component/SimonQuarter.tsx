@@ -19,7 +19,7 @@ export default function SimonQuarter(props: SimonQuarterProps) {
             audio.currentTime = 0;
             audio.play();
             if (window.navigator.vibrate) {
-                window.navigator.vibrate(100);
+                window.navigator.vibrate(200);
             }
             setFade(true);
         }
@@ -32,7 +32,7 @@ export default function SimonQuarter(props: SimonQuarterProps) {
             audio.currentTime = 0;
             audio.play();
             if (window.navigator.vibrate) {
-                window.navigator.vibrate(2000);
+                window.navigator.vibrate(200);
             }
             setFade(true);
         }
