@@ -26,7 +26,9 @@ export default function SimonDisc() {
     }, [sequence, sequenceIndex, isPlayerTime]);
 
     function sendLoseNotif(score: number) {
-        if (Notification.permission === "granted") {
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        }else if (Notification.permission === "granted") {
             const notifTitle = "You lose";
             const notifBody = `Your score is ${score}`;
             const options = {
