@@ -34,7 +34,7 @@ export default function SimonDisc() {
             if (result === "granted") {
                 navigator.serviceWorker.ready.then((registration) => {
                     registration.showNotification("Vibration Sample", {
-                        body: "Buzz! Buzz!",
+                        body: "You lose with score " + score,
                         tag: "vibration-sample",
                     });
                 });
