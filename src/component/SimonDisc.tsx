@@ -25,22 +25,6 @@ export default function SimonDisc() {
         }
     }, [sequence, sequenceIndex, isPlayerTime]);
 
-    function sendLoseNotif(score: number) {
-        if (!("Notification" in window)) {
-            alert("This browser does not support desktop notification");
-            return;
-        }
-        Notification.requestPermission((result) => {
-            if (result === "granted") {
-                navigator.serviceWorker.ready.then((registration) => {
-                    registration.showNotification("Vibration Sample", {
-                        body: "You lose with score " + score,
-                        tag: "vibration-sample",
-                    });
-                });
-            }
-        });
-    }
 
     const onClick = (color: number) => {
         if (color === sequence[sequenceIndex]) {
@@ -55,7 +39,6 @@ export default function SimonDisc() {
                 setSequenceIndex(sequenceIndex + 1);
             }
         } else {
-            sendLoseNotif(score);
             setScore(0);
             setSequence([]);
             setSequenceIndex(0);
