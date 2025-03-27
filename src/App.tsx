@@ -7,12 +7,16 @@ function App() {
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
 
     useEffect(() => {
-        Notification.requestPermission()
+        Notification.requestPermission();
+        const handler = (e: BeforeInstallPromptEvent) => {
+            e.preventDefault();
+            setDeferredPrompt(e);
+        }
+        window.addEventListener('beforeinstallprompt', handler);
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handler);
+        }
     }, []);
-
-    window.addEventListener('beforeinstallprompt', (e : BeforeInstallPromptEvent) => {
-        setDeferredPrompt(e);
-    });
 
     const handleClick = useCallback(() => {
         if (deferredPrompt) {
