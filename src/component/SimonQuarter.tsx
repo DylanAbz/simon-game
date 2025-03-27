@@ -23,7 +23,7 @@ export default function SimonQuarter(props: SimonQuarterProps) {
             }
             setFade(true);
         }
-    }, [props.isActive])
+    }, [props.isActive, audio])
 
     const onQuarterClick = useCallback(() => {
         if (props.isPlayerTime && !fade) {
