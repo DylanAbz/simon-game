@@ -15,6 +15,8 @@ export default function SimonQuarter(props: SimonQuarterProps) {
 
     useEffect(() => {
         if (props.isActive) {
+            audio.pause();
+            audio.currentTime = 0;
             audio.play();
             if (window.navigator.vibrate) {
                 window.navigator.vibrate(100);
@@ -26,6 +28,8 @@ export default function SimonQuarter(props: SimonQuarterProps) {
     const onQuarterClick = useCallback(() => {
         if (props.isPlayerTime && !fade) {
             props.onClick(props.colorNumber);
+            audio.pause();
+            audio.currentTime = 0;
             audio.play();
             if (window.navigator.vibrate) {
                 window.navigator.vibrate(2000);
