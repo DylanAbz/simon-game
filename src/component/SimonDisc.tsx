@@ -28,14 +28,18 @@ export default function SimonDisc() {
     function sendLoseNotif(score: number) {
         if (!("Notification" in window)) {
             alert("This browser does not support desktop notification");
-        }else if (Notification.permission === "granted") {
-            const notifTitle = "You lose";
-            const notifBody = `Your score is ${score}`;
-            const options = {
-                body: notifBody,
-            };
-            new Notification(notifTitle, options);
+            return;
         }
+        Notification.requestPermission((result) => {
+            if (result === "granted") {
+                navigator.serviceWorker.ready.then((registration) => {
+                    registration.showNotification("Vibration Sample", {
+                        body: "Buzz! Buzz!",
+                        tag: "vibration-sample",
+                    });
+                });
+            }
+        });
     }
 
     const onClick = (color: number) => {
