@@ -25,6 +25,17 @@ export default function SimonDisc() {
         }
     }, [sequence, sequenceIndex, isPlayerTime]);
 
+    function sendLoseNotif(score: number) {
+        if (Notification.permission === "granted") {
+            const notifTitle = "You lose";
+            const notifBody = `Your score is ${score}`;
+            const options = {
+                body: notifBody,
+            };
+            new Notification(notifTitle, options);
+        }
+    }
+
     const onClick = (color: number) => {
         if (color === sequence[sequenceIndex]) {
             if (sequenceIndex === sequence.length - 1) {
@@ -38,6 +49,7 @@ export default function SimonDisc() {
                 setSequenceIndex(sequenceIndex + 1);
             }
         } else {
+            sendLoseNotif(score);
             setScore(0);
             setSequence([]);
             setSequenceIndex(0);

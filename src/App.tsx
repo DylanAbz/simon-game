@@ -6,23 +6,8 @@ import {BeforeInstallPromptEvent} from "./types";
 function App() {
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
 
-    function randomNotification() {
-        const notifTitle = "Random notif";
-        const notifBody = `Created by moi.`;
-        const options = {
-            body: notifBody,
-        };
-        new Notification(notifTitle, options);
-        setTimeout(randomNotification, 30000);
-    }
-
-
     useEffect(() => {
-        Notification.requestPermission().then((result) => {
-            if (result === "granted") {
-                randomNotification();
-            }
-        });
+        Notification.requestPermission()
     }, []);
 
     window.addEventListener('beforeinstallprompt', (e : BeforeInstallPromptEvent) => {
