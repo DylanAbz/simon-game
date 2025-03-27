@@ -16,6 +16,9 @@ export default function SimonQuarter(props: SimonQuarterProps) {
     useEffect(() => {
         if (props.isActive) {
             audio.play();
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(100);
+            }
             setFade(true);
         }
     }, [props.isActive])
@@ -24,6 +27,9 @@ export default function SimonQuarter(props: SimonQuarterProps) {
         if (props.isPlayerTime && !fade) {
             props.onClick(props.colorNumber);
             audio.play();
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(100);
+            }
             setFade(true);
         }
     }, [props.isPlayerTime, props.onClick, props.colorNumber, audio, fade])
