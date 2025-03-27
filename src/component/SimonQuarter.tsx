@@ -28,7 +28,7 @@ export default function SimonQuarter(props: SimonQuarterProps) {
             props.onClick(props.colorNumber);
             audio.play();
             if (window.navigator.vibrate) {
-                window.navigator.vibrate(100);
+                window.navigator.vibrate(2000);
             }
             setFade(true);
         }
