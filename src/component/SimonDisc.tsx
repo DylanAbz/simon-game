@@ -1,6 +1,6 @@
 import '../styles/SimonDisc.css';
 import SimonQuarter from "./SimonQuarter.tsx";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function SimonDisc() {
 
